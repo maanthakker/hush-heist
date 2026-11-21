@@ -1,0 +1,14 @@
+# Netlify reads this automatically. The frontend lives in /client.
+[build]
+  base = "client"
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Single-page app: send every route to index.html.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

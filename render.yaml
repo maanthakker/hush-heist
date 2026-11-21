@@ -1,0 +1,19 @@
+# Render Blueprint: one web service runs the game AND the API (same site, no CORS setup).
+# New > Blueprint > pick this repo. Fill in MONGODB_URI when asked.
+services:
+  - type: web
+    name: hush-heist
+    runtime: node
+    plan: free
+    buildCommand: npm run render-build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: MONGODB_URI
+        sync: false
+      - key: MONGODB_DB
+        value: hush-heist
+      - key: JWT_SECRET
+        generateValue: true
